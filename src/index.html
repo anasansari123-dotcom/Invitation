@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{{couple}} | Wedding Invitation</title>
-<meta name="description" content="You are invited to the wedding of {{couple}}, {{longDate}}. Tap to open the palace doors.">
+<title>{{title}} | Shaadi ka Dawatnama</title>
+<meta name="description" content="Aapko {{couple}} ki shaadi mein dili dawat hai, {{longDate}}. Darwaza kholne ke liye tap karein.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#06121f">
 <meta property="og:type" content="website">
-<meta property="og:title" content="{{couple}} are getting married">
-<meta property="og:description" content="{{longDate}}, {{city}}. Tap to open your royal invitation.">
+<meta property="og:title" content="Shaadi ka Dawatnama: {{title}}">
+<meta property="og:description" content="{{longDate}}. Apna dawatnama kholne ke liye tap karein.">
 <meta property="og:url" content="{{url}}">
 <meta property="og:image" content="{{ogImage}}">
 <meta property="og:image:width" content="1200">
@@ -29,120 +29,90 @@
   <div class="door left" aria-hidden="true"><picture><source media="(max-aspect-ratio: 5/8)" srcset="art/door-tall.svg"><source media="(min-aspect-ratio: 5/4)" srcset="art/door-wide.svg"><img src="art/door.svg" alt=""></picture></div>
   <div class="door right" aria-hidden="true"><picture><source media="(max-aspect-ratio: 5/8)" srcset="art/door-tall.svg"><source media="(min-aspect-ratio: 5/4)" srcset="art/door-wide.svg"><img src="art/door.svg" alt=""></picture></div>
   <div class="invite-to">
-    <small>A royal invitation for</small>
-    <p id="guest">You &amp; Your Family</p>
+    <small>Khaas dawatnama</small>
+    <p id="guest">Aap &amp; Aapki Family</p>
   </div>
-  <button class="seal" id="open" type="button" aria-label="Break the seal and open the invitation">
-    <span class="half l"><img src="art/seal.svg" alt=""><i>{{firstInitial}}<em>&amp;</em>{{secondInitial}}</i></span>
-    <span class="half r"><img src="art/seal.svg" alt=""><i>{{firstInitial}}<em>&amp;</em>{{secondInitial}}</i></span>
+  <button class="seal" id="open" type="button" aria-label="Mohar todein aur dawatnama kholein">
+    <span class="half l"><img src="art/seal.svg" alt=""><i class="duo">{{seal}}</i></span>
+    <span class="half r"><img src="art/seal.svg" alt=""><i class="duo">{{seal}}</i></span>
   </button>
-  <p class="tap">Tap the seal to open</p>
+  <p class="tap">Mohar par tap karein</p>
 </div>
 
-<button class="sound" id="sound" type="button" aria-label="Turn music off" aria-pressed="true"><i></i><i></i><i></i><i></i></button>
+<button class="sound" id="sound" type="button" aria-label="Music band karein" aria-pressed="true"><i></i><i></i><i></i><i></i></button>
 
 <main id="card" inert>
   <section class="hero" id="hero">
     <div class="hero-copy">
       <p class="blessing" lang="{{lang}}">{{blessing}}</p>
       <p class="caps">{{blessingLine}}</p>
-      <h1 class="names"><span>{{first}}</span><em>&amp;</em><span>{{second}}</span></h1>
-      <p class="invite">invite you to their wedding</p>
+      <h1 class="names duo">{{heroNames}}</h1>
+      <p class="invite">ki shaadi mein aap sabko dili dawat hai</p>
       <p class="hero-date">{{longDate}}</p>
     </div>
-    <p class="cue">Scroll to enter the palace<i></i></p>
+    <p class="cue">Mahal mein aane ke liye scroll karein<i></i></p>
   </section>
 
-  <section class="journey" id="journey" aria-label="Their journey">
+  <section class="journey" id="journey" aria-label="Hamari khushiyan">
     <div class="journey-view">
-      <p class="chapter"><small>Once, there were</small>Two hearts</p>
-      <p class="chapter"><small>who found in each other</small>One home</p>
-      <p class="chapter"><small>and now two families become</small>One story</p>
-      <p class="chapter"><small>and the palace awaits</small>Your presence</p>
+      <p class="chapter"><small>Hamare ghar mein aayi hain</small>Do Khushiyan</p>
+      <p class="chapter"><small>bhai ke sar sajega</small>Sehra</p>
+      <p class="chapter"><small>aur behen ki hogi</small>Rukhsati</p>
+      <p class="chapter"><small>bas intezaar hai</small>Aapka</p>
     </div>
   </section>
 
   <div id="details">
     <section class="section couple">
-      <p class="caps reveal">With hearts full of joy</p>
-      <h2 class="title reveal">The Couple</h2>
+      <p class="caps reveal">{{hosts}}</p>
+      <p class="caps reveal">Dili khushi ke saath</p>
+      <h2 class="title reveal">Dulha Dulhan</h2>
       <img class="ornament reveal" src="art/ornament.svg" alt="">
-      <button class="flip reveal" id="flip" type="button" aria-pressed="false">
-        <span class="flip-in">
-          <span class="face front">
-            <img src="art/crest.svg" alt="">
-            <span class="face-names">{{first}} <em>&amp;</em> {{second}}</span>
-            <span class="hint">Tap to turn the card</span>
-            <span class="shine"></span>
-          </span>
-          <span class="face back">
-            <span class="person">
-              <b>{{firstFull}}</b><small>{{firstRelation}}</small>
-              <span>{{firstParents}}</span><small>{{firstFamily}}</small>
-            </span>
-            <span class="with">&amp;</span>
-            <span class="person">
-              <b>{{secondFull}}</b><small>{{secondRelation}}</small>
-              <span>{{secondParents}}</span><small>{{secondFamily}}</small>
-            </span>
-          </span>
-        </span>
-      </button>
+      <div class="pairs">{{cards}}
+      </div>
     </section>
 
     <section class="section date">
       <img class="mandala" src="art/mandala.svg" alt="">
-      <p class="caps reveal">A secret written in gold</p>
-      <h2 class="title reveal">Save the Date</h2>
-      <p class="sub reveal" id="scratch-note" aria-live="polite">Rub the three gold coins with your finger</p>
+      <p class="caps reveal">Sone mein likhi tareekh</p>
+      <h2 class="title reveal">Tareekh Yaad Rakhein</h2>
+      <p class="sub reveal" id="scratch-note" aria-live="polite">Teeno sone ke sikkon ko ungli se ragdein</p>
       <div class="coins reveal">
-        <div class="coin"><b>{{day}}</b><small>Day</small><canvas aria-hidden="true"></canvas></div>
-        <div class="coin"><b>{{month}}</b><small>Month</small><canvas aria-hidden="true"></canvas></div>
-        <div class="coin"><b class="year">{{year}}</b><small>Year</small><canvas aria-hidden="true"></canvas></div>
+        <div class="coin"><b class="year">{{day}}</b><small>Tareekh</small><canvas aria-hidden="true"></canvas></div>
+        <div class="coin"><b>{{month}}</b><small>Mahina</small><canvas aria-hidden="true"></canvas></div>
+        <div class="coin"><b class="year">{{year}}</b><small>Saal</small><canvas aria-hidden="true"></canvas></div>
       </div>
-      <p class="when" id="when">{{weekday}} &middot; {{time}} &middot; {{city}}</p>
-      <button class="text-btn" id="reveal-date" type="button">or reveal it for me</button>
+      <p class="when" id="when">{{weekday}} &middot; {{city}}</p>
+      <button class="text-btn" id="reveal-date" type="button">ya seedha dikha dein</button>
+      <p class="count-label reveal" id="count-label"></p>
       <div class="countdown reveal" id="countdown">
-        <div><b>0</b><small>Days</small></div><div><b>0</b><small>Hours</small></div>
-        <div><b>0</b><small>Minutes</small></div><div><b>0</b><small>Seconds</small></div>
+        <div><b>0</b><small>Din</small></div><div><b>0</b><small>Ghante</small></div>
+        <div><b>0</b><small>Minute</small></div><div><b>0</b><small>Second</small></div>
       </div>
     </section>
 
     <section class="festivities">
       <header>
-        <p class="caps reveal">Join us as we celebrate</p>
-        <h2 class="title reveal">The Festivities</h2>
+        <p class="caps reveal">Dono shaadiyon mein zaroor tashreef layein</p>
+        <h2 class="title reveal">Shaadi ki Dawat</h2>
         <img class="ornament reveal" src="art/ornament.svg" alt="">
       </header>
       <div class="deck">{{events}}
       </div>
     </section>
-
-    <section class="section">
-      <p class="caps reveal">The honour of your reply</p>
-      <h2 class="title reveal">Will you join us?</h2>
-      <form class="rsvp reveal" id="rsvp">
-        <label>Your name<input name="name" required maxlength="70" autocomplete="name"></label>
-        <fieldset>
-          <legend>Your answer</legend>
-          <label><input type="radio" name="answer" value="yes" checked><span>Joyfully accept</span></label>
-          <label><input type="radio" name="answer" value="no"><span>Send my wishes</span></label>
-        </fieldset>
-        <label id="count-field">Number of guests<input name="count" type="number" min="1" max="30" value="2" inputmode="numeric" required></label>
-        <label>A blessing for the couple<textarea name="wish" rows="2" maxlength="300"></textarea></label>
-        <button class="btn" type="submit">Reply on WhatsApp</button>
-      </form>
-    </section>
   </div>
 
   <section class="finale" id="finale">
     <div class="finale-copy">
-      <p class="caps reveal">Your presence is our blessing</p>
-      <h2 class="names small reveal"><span>{{first}}</span><em>&amp;</em><span>{{second}}</span></h2>
-      <p class="sub reveal" id="wish-note" aria-live="polite">Light up their sky with your blessings</p>
+      <p class="caps reveal">Aapki maujoodgi hamari khushi hai</p>
+      <h2 class="names duo small reveal">{{heroNames}}</h2>
+      <p class="sub reveal" id="wish-note" aria-live="polite">Apni duaon se inka aasmaan roshan karein</p>
     </div>
-    <button class="btn" id="release" type="button">Release a lantern</button>
-  </section>
+    <div class="finale-actions">
+      <button class="btn" id="release" type="button">Dua ki lantern udayein</button>
+      <a class="more" id="more" href="#maker" aria-label="Neeche scroll karein"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></a>
+    </div>
+  </section>{{maker}}
 </main>
 
 <script type="application/json" id="data">{{data}}</script>

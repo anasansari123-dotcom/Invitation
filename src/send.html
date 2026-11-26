@@ -17,7 +17,7 @@
 <body style="--len:{{nameLength}}">
 <main class="section send">
   <p class="caps">{{couple}}</p>
-  <h1 class="title">Send Invites</h1>
+  <h1 class="title">Dawat Bhejein</h1>
   <p class="sub">Har mehmaan ke naam ka alag card</p>
   <form class="rsvp" id="send">
     <label>Guest ka naam<input name="to" maxlength="70" required placeholder="Sharma ji & Family"></label>
@@ -40,7 +40,8 @@
     const name = to.value.trim();
     const link = new URL('./', location.href.split(/[?#]/)[0]);
     if (name) link.searchParams.set('to', name);
-    message.value = `Dear ${name || 'Guest'},\n\nWith hearts full of joy, we invite you to the wedding of *${data.couple}*.\n\nTap to open your invitation:\n${link.href}`;
+    const dates = data.starts.map(w => `• ${w.label}: ${w.date}`).join('\n');
+    message.value = `Assalamu Alaikum ${name || 'Mehmaan'},\n\nHamare ghar mein do khushiyan hain. Aapko dili dawat hai *${data.couple}* ki shaadi mein:\n${dates}\n\nApna dawatnama kholne ke liye tap karein:\n${link.href}`;
   }
   to.addEventListener('input', compose);
   compose();

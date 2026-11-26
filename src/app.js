@@ -10,10 +10,7 @@
   scrollTo(0, 0);
 
   const guest = (new URLSearchParams(location.search).get('to') || '').trim().slice(0, 70);
-  if (guest) {
-    $('#guest').textContent = guest;
-    $('#rsvp').elements.name.value = guest;
-  }
+  if (guest) $('#guest').textContent = guest;
 
   // Mohar todna
   const open = $('#open');
@@ -42,7 +39,7 @@
   sound.addEventListener('click', () => {
     const on = sound.getAttribute('aria-pressed') !== 'true';
     sound.setAttribute('aria-pressed', on);
-    sound.setAttribute('aria-label', on ? 'Turn music off' : 'Turn music on');
+    sound.setAttribute('aria-label', on ? 'Music band karein' : 'Music chalayein');
     window.Music.set(on, data.music);
   });
 
@@ -112,8 +109,8 @@
   }), { threshold: .12 });
   $$('.reveal').forEach(el => seen.observe(el));
 
-  const flip = $('#flip');
-  flip.addEventListener('click', () => flip.setAttribute('aria-pressed', flip.getAttribute('aria-pressed') !== 'true'));
+  $$('.flip').forEach(flip => flip.addEventListener('click', () =>
+    flip.setAttribute('aria-pressed', flip.getAttribute('aria-pressed') !== 'true')));
 
   // Sone ke sikke khurchna
   const coins = $$('.coin');
@@ -125,7 +122,7 @@
     navigator.vibrate?.(20);
     if (!coins.every(c => c.classList.contains('done'))) return;
     $('.date').classList.add('revealed');
-    $('#scratch-note').textContent = 'It is written. See you there!';
+    $('#scratch-note').textContent = 'Tareekh likh di gayi. Zaroor aaiyega!';
     for (let i = 0; i < 6; i++) setTimeout(() => firework(), i * 380);
   }
 
@@ -180,16 +177,20 @@
   $('#reveal-date').addEventListener('click', () => coins.forEach(reveal));
 
   // Countdown
-  const count = $('#countdown'), digits = $$('#countdown b');
+  // Agli shaadi tak ka countdown
+  const count = $('#countdown'), digits = $$('#countdown b'), countLabel = $('#count-label');
   let interval;
   function tick() {
-    const s = Math.floor((data.start - Date.now()) / 1000);
-    if (s <= 0) {
+    const next = data.starts.find(w => w.t > Date.now());
+    if (!next) {
       count.classList.add('over');
-      count.textContent = 'The celebration has begun';
+      count.textContent = 'Alhamdulillah, jashn shuru ho chuka hai';
+      countLabel.textContent = '';
       clearInterval(interval);
       return;
     }
+    countLabel.textContent = `${next.label} ki shaadi (${next.date}) mein baaki`;
+    const s = Math.floor((next.t - Date.now()) / 1000);
     [Math.floor(s / 86400), Math.floor(s / 3600) % 24, Math.floor(s / 60) % 60, s % 60]
       .forEach((v, i) => { digits[i].textContent = String(v).padStart(2, '0'); });
   }
@@ -201,34 +202,17 @@
     $$('[data-ics]').forEach(a => { a.href = a.dataset.ics; a.removeAttribute('target'); });
   }
 
-  // RSVP
-  const form = $('#rsvp');
-  form.addEventListener('change', () => {
-    const no = form.elements.answer.value === 'no';
-    $('#count-field').hidden = no;
-    form.elements.count.disabled = no;
-  });
-  form.addEventListener('submit', e => {
+  // Neeche wala arrow: "card banwayein" button tak le jata hai
+  const more = $('#more'), maker = $('#maker');
+  if (!maker) more.remove();
+  else more.addEventListener('click', e => {
     e.preventDefault();
-    const { name, answer, count: n, wish: note } = form.elements;
-    const yes = answer.value === 'yes';
-    const lines = [
-      `*Wedding RSVP: ${data.couple}*`, '',
-      `Name: ${name.value.trim()}`,
-      yes ? 'We joyfully accept!' : 'Sorry, I cannot attend, but I send all my love.',
-    ];
-    if (yes) lines.push(`Guests: ${n.value}`);
-    if (note.value.trim()) lines.push('', note.value.trim());
-    const url = `https://wa.me/${data.phone}?text=${encodeURIComponent(lines.join('\n'))}`;
-    // WhatsApp ka in-app browser popup rok de to usi tab mein kholo
-    const tab = window.open(url, '_blank');
-    if (tab) tab.opener = null;
-    else location.href = url;
+    maker.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'end' });
   });
 
   $('#release').addEventListener('click', () => {
-    wish(guest ? `With love, ${guest}` : 'With love and blessings');
-    $('#wish-note').textContent = 'Your blessing is on its way to the stars';
+    wish(guest ? `Duaon ke saath, ${guest}` : 'Dher saari duaon ke saath');
+    $('#wish-note').textContent = 'Aapki dua sitaron tak ja rahi hai';
     setTimeout(() => firework(), 1600);
   });
 })();

@@ -1,7 +1,7 @@
 # Shahi Wedding Invitation
 
 ## 1. Details badlein
-Sirf `wedding.config.js` edit karein: naam, parents, date, venue, WhatsApp number, tradition.
+Sirf `wedding.config.js` edit karein. `weddings` list mein har shaadi ka ek block hai: dulha/dulhan ka naam, date, time, venue aur `map` (Google Maps ka share link, exact pin ke liye). Saath mein WhatsApp number aur tradition bhi wahin hain.
 
 ## 2. Preview
 ```
