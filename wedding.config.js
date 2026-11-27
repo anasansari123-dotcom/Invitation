@@ -25,7 +25,7 @@ module.exports = {
       groom: 'Mohd Kashif', groomShort: 'Kashif',
       bride: 'Muskan Parveen', brideShort: 'Muskan',
       baraat: 'Baraat jayegi',
-      date: '2026-11-22', time: '', hours: 6,
+      date: '2026-12-22', time: '', hours: 6,
       venue: 'Libharedi', address: 'Uttarakhand 247656',
       map: '',
     },
@@ -35,7 +35,7 @@ module.exports = {
       bride: 'Ronak Parveen', brideShort: 'Ronak',
       brideFirst: true, // card par dulhan ka naam pehle
       baraat: 'Baraat aayegi',
-      date: '2026-11-23', time: '', hours: 6,
+      date: '2026-12-23', time: '', hours: 6,
       venue: 'Nawab Farm House', address: 'Mimlana Road, Muzaffarnagar 251001',
       map: '',
     },
